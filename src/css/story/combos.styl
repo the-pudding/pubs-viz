@@ -1,0 +1,66 @@
+/* CUSTOM STORY STYLE */
+.combos
+	max-width 80rem
+	margin 0 auto 3rem auto
+
+	.combo-wrapper
+		width 100%
+		display flex
+		flex-direction row
+		justify-content space-between
+		margin 3rem auto
+
+		.combo-block
+			display flex
+			flex-direction column
+			width 25%
+			padding 1rem
+
+			.addition
+				display flex
+				flex-direction row
+				align-items center
+				width 100%
+				justify-content center
+
+				.text
+					color $brown-dark
+					font-family $national
+					text-transform uppercase
+					border-bottom 1px solid $brown-dark
+					margin 0
+					text-align center
+					width calc(50% - 3rem)
+
+				.plus
+					color $red-accent
+					font-weight 700
+					set-type-size('xxxx-large', true)
+					margin 0
+					width 3rem
+					text-align center
+
+			.sketches
+				display flex
+				flex-direction row
+
+				img
+					width 50%
+
+			.example
+				text-align center
+				set-type-size('xxx-large', true)
+
+			.pub-counts
+				height 10rem
+
+			button
+				width 8rem
+				height 2.5rem
+				margin 0 auto
+				border 2px solid $brown-dark
+				background-color lighten($tan-medium, 25)
+				text-transform uppercase
+				set-type-size('small', true)
+				&:hover
+					background-color lighten($tan-medium, 15)

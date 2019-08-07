@@ -1,0 +1,23 @@
+<section class='combos'>
+	<div class='combo-wrapper'>
+		{{#each doc.combos}}
+			<div class='combo-block' id='{{id}}'>
+				<div class='addition'>
+					<p class='text'>{{first}}</p>
+					<p class='plus'>+</p>
+					<p class='text'>{{second}}</p>
+				</div>
+				<div class='sketches'>
+					<img src='assets/images/{{firstImg}}'>
+					<img src='assets/images/{{secondImg}}'>
+				</div>
+				<p class='example'>{{example}}</p>
+				<div class='pub-counts'></div>
+				<button>Show more</button>
+			</div>
+		{{/each}}
+	</div>
+	{{#each doc.afterCombos}}
+		<p class='prose'>{{{value}}}</p>
+	{{/each}}	
+</section>
