@@ -12,12 +12,18 @@
 					<img src='assets/images/{{secondImg}}'>
 				</div>
 				<p class='example'>{{example}}</p>
-				<div class='pub-counts'></div>
-				<button>Show more</button>
+				<div class='pub-counts'>
+					<div class='labels'>
+						<p>Name</p>
+						<p>No.</p>
+					</div>
+					<div class='fade is-visible'></div>
+				</div>
+				<button class='is-visible'>Show more</button>
 			</div>
 		{{/each}}
 	</div>
 	{{#each doc.afterCombos}}
 		<p class='prose'>{{{value}}}</p>
-	{{/each}}	
+	{{/each}}
 </section>

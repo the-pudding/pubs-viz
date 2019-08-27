@@ -1,0 +1,19 @@
+{
+    "locations": {
+        "stop-1": { "coordinates": [ -122.43099689483643, 37.79152370132501 ] },
+        "stop-2": { "coordinates": [ -122.43082523345947, 37.79065889780023 ] },
+        "stop-3": { "coordinates": [ -122.43157625198363, 37.79015018511632 ] }
+    },
+    "services": [
+        {"location": "stop-1" },
+        {"location": "stop-2" },
+        {"location": "stop-3" }
+    ],
+    "vehicles": {
+        "vehicle1": {
+            "start_location": "stop-1",
+            "earliest_start": "2019-03-12T08:00:00-08:00",
+            "latest_end": "2019-03-12T17:00:00-08:00"
+        }
+    }
+}

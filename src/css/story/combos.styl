@@ -52,7 +52,39 @@
 				set-type-size('xxx-large', true)
 
 			.pub-counts
-				height 10rem
+				height 12rem
+				overflow hidden
+				position relative
+				margin-bottom 1rem
+
+				&.is-visible
+					overflow auto
+					height auto
+
+				.labels
+					display flex
+					flex-direction row
+					justify-content space-between
+
+					p
+						color $tan-medium
+						text-transform uppercase
+						font-family $national
+						set-type-size('root', true)
+						margin 0
+
+				.fade
+					position absolute
+					bottom 0
+					left 0
+					width 100%
+					height 3rem
+					background-image linear-gradient(rgba($tan-light, 0), rgba($tan-light, 1))
+					z-index setOverlay('overlay')
+					display none
+
+					&.is-visible
+						display inline-block
 
 			button
 				width 8rem
@@ -62,5 +94,22 @@
 				background-color lighten($tan-medium, 25)
 				text-transform uppercase
 				set-type-size('small', true)
+				display none
 				&:hover
 					background-color lighten($tan-medium, 15)
+
+				&.is-visible
+					display inline-block
+
+	.table-row
+		display flex
+		flex-direction row
+		justify-content space-between
+		border-bottom 1px solid $tan-medium
+		padding 0.5rem 0
+
+		p
+			margin 0
+			color $brown-dark
+			font-family $national
+			set-type-size('root', true)

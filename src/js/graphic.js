@@ -1,5 +1,39 @@
 /* global d3 */
+import loadData from './load-data'
+import './pudding-chart/count-table'
+
 let pubsMap;
+let pubCountsData = null;
+let pubCountsTable = null;
+
+const $seeMoreButtonColor = d3.select('#color-noun button')
+const $seeMoreButtonRoyalty = d3.select('#royalty-noun button')
+const $seeMoreButtonInn = d3.select('#noun-inn button')
+const $seeMoreButtonNoun = d3.select('#noun-noun button')
+const $allButtons = d3.selectAll('.combo-block button')
+const $allFades= d3.selectAll('.combo-block fade')
+
+function setupCountTable(data, category) {
+	const $countsTableContainer = d3.selectAll(`#${category} .pub-counts`)
+	pubCountsTable = $countsTableContainer
+		.datum(data)
+		.puddingCountTable(category)
+}
+
+function handleSeeMore() {
+	const category = this.parentElement.id
+
+	$allButtons.classed('is-visible', true)
+	d3.select(this).classed('is-visible', false)
+
+	$allFades.classed('is-visible', true)
+	d3.select(`#${category} .fade`).classed('is-visible', false)
+
+	d3.selectAll('combo-block').classed('is-visible', true)
+	const categoryTable = d3.select(`#${category} .pub-counts`)
+	d3.selectAll('.pub-counts').classed('is-visible', false)
+	categoryTable.classed('is-visible', true)
+}
 
 //MAPBOX
 function buildMap() {
@@ -22,7 +56,24 @@ function buildMap() {
 function resize() {}
 
 function init() {
-  buildMap()
+
+	loadData().then(result => {
+		// organize data
+		pubCountsData = result[0]
+
+		setupCountTable(pubCountsData, 'color-noun')
+		setupCountTable(pubCountsData, 'royalty-noun')
+		setupCountTable(pubCountsData, 'noun-inn')
+		setupCountTable(pubCountsData, 'noun-noun')
+
+		buildMap()
+
+		$seeMoreButtonColor.on('click', handleSeeMore)
+		$seeMoreButtonRoyalty.on('click', handleSeeMore)
+		$seeMoreButtonInn.on('click', handleSeeMore)
+		$seeMoreButtonNoun.on('click', handleSeeMore)
+	}).catch(console.error)
+
 }
 
 export default { init, resize };
