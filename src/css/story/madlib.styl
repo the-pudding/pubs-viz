@@ -16,11 +16,20 @@
 		margin-bottom 3em
 
 		&__directions
+			display flex
+			flex-direction row
+			align-items center
+			color $brown-dark
+
 			p
 				font-family $national
 				font-weight 700
 				text-transform uppercase
 				margin 0
+
+			img
+				width 4.5rem
+				margin-left 0.5rem
 
 		&__choices
 			display flex
@@ -28,27 +37,69 @@
 			width 75%
 			justify-content space-between
 
+			.is-selected
+				font-weight 700
+				color $red-accent
+
 			p
 				font-family $national
 				color $tan-medium
 				text-transform uppercase
 				margin 0
+				width 11rem
+				text-align center
+				&:hover
+					font-weight 700
 
 .dropdown-wrapper
 	max-width $column-width
-	margin 0 auto
+	margin 0 auto 5rem auto
 	padding 0 1rem
 	display flex
 	flex-direction row
 	justify-content space-between
 
-	select
+	.dropdown-group
+		position relative
 		width calc(50% - 1rem)
-		border 2px solid $dark-brown
-		background-color lighten($tan-medium, 25)
-		set-type-size('large', true)
-		border-radius none
-		height 5rem
+		height 6rem
+		display flex
+		justify-content center
+
+		&:before
+			content ''
+			position absolute
+			z-index 900
+			top 10px
+			left 10px
+			right 10px
+			bottom 10px
+			border 2px solid $brown-dark
+			pointer-events none
+
+		select
+			width 100%
+			border 0
+			background-color transparent
+			set-type-size('xxxx-large', true)
+			border-radius none
+			height 6rem
+			font-family $pirata
+			color $brown-dark
+			position absolute
+			appearance none
+			text-indent 2rem
+			background-image url('assets/images/arrow.png')
+			background-repeat no-repeat
+			background-position 92% 50%
+			background-size 35px 35px
+
+		.select-bg
+			position absolute
+			width 100%
+			border 5px solid $brown-dark
+			background-color lighten($tan-medium, 25)
+			height 6rem
 
 .map-sentence
 	max-width 50rem
@@ -59,7 +110,10 @@
 		set-type-size('xx-large', true)
 		text-align center
 		line-height 1.5
+		color $brown-dark
 
 		.red-highlight
 			border-bottom 2px solid $red-accent
 			font-weight 700
+			font-family $pirata
+			set-type-size('xxx-large', true)

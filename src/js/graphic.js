@@ -12,12 +12,19 @@ const $seeMoreButtonInn = d3.select('#noun-inn button')
 const $seeMoreButtonNoun = d3.select('#noun-noun button')
 const $allButtons = d3.selectAll('.combo-block button')
 const $allFades= d3.selectAll('.combo-block fade')
+const $pattern = d3.selectAll('.nav__choices p')
 
 function setupCountTable(data, category) {
 	const $countsTableContainer = d3.selectAll(`#${category} .pub-counts`)
 	pubCountsTable = $countsTableContainer
 		.datum(data)
 		.puddingCountTable(category)
+}
+
+function handlePickPattern() {
+	let $selectedPattern = d3.select(this)
+	$pattern.classed('is-selected', false)
+	$selectedPattern.classed('is-selected', true)
 }
 
 function handleSeeMore() {
@@ -72,6 +79,7 @@ function init() {
 		$seeMoreButtonRoyalty.on('click', handleSeeMore)
 		$seeMoreButtonInn.on('click', handleSeeMore)
 		$seeMoreButtonNoun.on('click', handleSeeMore)
+		$pattern.on('click', handlePickPattern)
 	}).catch(console.error)
 
 }

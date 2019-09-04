@@ -1,12 +1,19 @@
 .intro
 	margin 0 auto
-	padding 6rem 1rem 3rem 1rem
+	padding 4rem 1rem 3rem 1rem
+
+	img
+		max-width 25rem
+		margin 0 auto
 
 	&__hed
-		max-width 60rem
-		margin 0 auto
+		max-width 40rem
+		margin 2rem auto 4rem auto
 		text-align center
-		set-type-size('xxxxx-large', true)
+		font-family $pirata
+		font-size 100px
+		line-height 1
+		color $brown-dark
 
 	&__dek
 		max-width $column-width
@@ -16,12 +23,14 @@
 
 	&__byline
 		max-width $column-width
-		margin 1rem auto 3rem auto
+		margin 1rem auto 2rem auto
 		text-align center
 		font-family $national
+		color $brown-dark
 
 		a
 			text-transform uppercase
+			color $brown-dark
 
 	&__time
 		display block
