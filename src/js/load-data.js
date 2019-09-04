@@ -30,7 +30,6 @@ function loadA(file) {
           count: +d.count,
           category: categoryMatches[d.tag]
         }))
-        console.log(clean)
         resolve(clean);
       })
       .catch(reject);
