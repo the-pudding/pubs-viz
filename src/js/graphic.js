@@ -13,6 +13,7 @@ const $seeMoreButtonNoun = d3.select('#noun-noun button')
 const $allButtons = d3.selectAll('.combo-block button')
 const $allFades= d3.selectAll('.combo-block fade')
 const $pattern = d3.selectAll('.nav__choices p')
+const $combosSection = d3.selectAll('.combos')
 
 function setupCountTable(data, category) {
 	const $countsTableContainer = d3.selectAll(`#${category} .pub-counts`)
@@ -25,6 +26,14 @@ function handlePickPattern() {
 	let $selectedPattern = d3.select(this)
 	$pattern.classed('is-selected', false)
 	$selectedPattern.classed('is-selected', true)
+}
+
+function jumpTo(element) {
+	window.scroll({
+		behavior: 'auto',
+		left: 0,
+		top: element.offsetTop - 48
+	});
 }
 
 function handleSeeMore() {
@@ -48,16 +57,8 @@ function handleSeeMore() {
 		d3.select(this).text('See all')
 		d3.select(`#${category} .fade`).classed('is-visible', true)
 		categoryTable.classed('is-visible', false)
+		jumpTo($combosSection.node())
 	}
-
-	//$allButtons.classed('is-visible', true)
-	//$allButtons.text('See all')
-	//
-	//d3.select(`#${category} .fade`).classed('is-visible', false)
-
-	// const categoryTable = d3.select(`#${category} .pub-counts`)
-	// //d3.selectAll('.pub-counts').classed('is-visible', false)
-	// categoryTable.classed('is-visible', true)
 }
 
 //MAPBOX
