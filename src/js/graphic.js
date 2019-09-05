@@ -30,16 +30,34 @@ function handlePickPattern() {
 function handleSeeMore() {
 	const category = this.parentElement.id
 
-	$allButtons.classed('is-visible', true)
-	d3.select(this).classed('is-visible', false)
-
-	$allFades.classed('is-visible', true)
-	d3.select(`#${category} .fade`).classed('is-visible', false)
-
-	d3.selectAll('combo-block').classed('is-visible', true)
+	const currButton = d3.select(this)
+	const currButtonClass = currButton.node().className
 	const categoryTable = d3.select(`#${category} .pub-counts`)
-	d3.selectAll('.pub-counts').classed('is-visible', false)
-	categoryTable.classed('is-visible', true)
+
+	if (currButtonClass == 'open') {
+		currButton.classed('open', false)
+		currButton.classed('collapse', true)
+		d3.select(this).text('See fewer')
+		d3.select(`#${category} .fade`).classed('is-visible', false)
+		categoryTable.classed('is-visible', true)
+	}
+
+	if (currButtonClass == 'collapse') {
+		currButton.classed('collapse', false)
+		currButton.classed('open', true)
+		d3.select(this).text('See all')
+		d3.select(`#${category} .fade`).classed('is-visible', true)
+		categoryTable.classed('is-visible', false)
+	}
+
+	//$allButtons.classed('is-visible', true)
+	//$allButtons.text('See all')
+	//
+	//d3.select(`#${category} .fade`).classed('is-visible', false)
+
+	// const categoryTable = d3.select(`#${category} .pub-counts`)
+	// //d3.selectAll('.pub-counts').classed('is-visible', false)
+	// categoryTable.classed('is-visible', true)
 }
 
 //MAPBOX
@@ -58,7 +76,8 @@ function buildMap() {
 		interactive: true
 	});
 
-	//pubsMap.scrollZoom.disable();
+	pubsMap.scrollZoom.disable();
+	pubsMap.addControl(new mapboxgl.NavigationControl());
 }
 function resize() {}
 

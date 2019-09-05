@@ -28,6 +28,11 @@ d3.selection.prototype.puddingCountTable = function init(category) {
 
 				organizeData(category)
 
+				const totalCount = categoryData.length
+
+				const totalSpan = d3.select(`#${category} .pattern-count`)
+				totalSpan.text(totalCount)
+
 				$vis = $sel.append('div').attr('class', 'g-vis');
 
 				const tableRow = $vis

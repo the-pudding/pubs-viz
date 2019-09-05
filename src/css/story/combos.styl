@@ -16,6 +16,13 @@
 			width 25%
 			padding 1rem
 
+			.total-count
+				color $tan-medium
+				text-align center
+				font-family $national
+				set-type-size('root', true)
+				margin 0 0 1rem 0
+
 			.addition
 				display flex
 				flex-direction row
@@ -97,12 +104,11 @@
 				background-color lighten($tan-medium, 25)
 				text-transform uppercase
 				set-type-size('small', true)
-				display none
 				color $brown-dark
 				&:hover
 					background-color lighten($tan-medium, 15)
 
-				&.is-visible
+				&.open
 					display inline-block
 
 	.table-row
@@ -111,6 +117,9 @@
 		justify-content space-between
 		border-bottom 1px solid $tan-medium
 		padding 0.5rem 0
+		&:hover
+			p
+				font-weight 700
 
 		p
 			margin 0
