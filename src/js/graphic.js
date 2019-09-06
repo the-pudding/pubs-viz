@@ -1,5 +1,6 @@
 /* global d3 */
 import loadData from './load-data'
+import madlib from './madlib-dropdown'
 import './pudding-chart/count-table'
 
 let pubsMap;
@@ -49,6 +50,8 @@ function handlePickPattern() {
 	let $selectedPattern = d3.select(this)
 	$pattern.classed('is-selected', false)
 	$selectedPattern.classed('is-selected', true)
+
+	madlib.init(pubCountsData)
 }
 
 function jumpTo(element) {
@@ -172,6 +175,8 @@ function init() {
 	loadData().then(result => {
 		// organize data
 		pubCountsData = result[0]
+
+		madlib.init(pubCountsData)
 
 		setupCountTable(pubCountsData, 'color-noun')
 		setupCountTable(pubCountsData, 'royalty-noun')
