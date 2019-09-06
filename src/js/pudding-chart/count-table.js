@@ -22,6 +22,25 @@ d3.selection.prototype.puddingCountTable = function init(category) {
 			categoryData = data.filter(d => d.category == category)
 		}
 
+		function stripSpaces(str) {
+			let noSpaces = str.replace(/\s/g, '');
+			noSpaces = noSpaces.replace(/&/g, '')
+			return noSpaces
+		}
+
+		function mouseoverTable() {
+			let currRowClass = d3.select(this).node().className
+			let currentRowClassSplit = currRowClass.split(' ')[1]
+
+			d3.selectAll('.table-row').classed('is-highlight', false)
+			let $highlightRows = d3.selectAll(`.${currentRowClassSplit}`)
+			$highlightRows.classed('is-highlight', true)
+		}
+
+		function mouseoutTable() {
+			d3.selectAll('.table-row').classed('is-highlight', false)
+		}
+
 		const Chart = {
 			// called once at start
 			init() {
@@ -40,7 +59,9 @@ d3.selection.prototype.puddingCountTable = function init(category) {
 					.data(categoryData)
 					.enter()
 					.append('div')
-					.attr('class', 'table-row')
+					.attr('class', d => `table-row table-row_${stripSpaces(d.pub)}`)
+					.on('mouseover', mouseoverTable)
+					.on('mouseout', mouseoutTable)
 
 				const pubName = tableRow
 					.append('p')
