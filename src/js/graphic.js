@@ -141,7 +141,6 @@ function addPubPoints(coordinates) {
 }
 
 function addRoute(coordinates){
-	console.log(coordinates)
 
 	pubsMap.addLayer({
 		'id': 'route',
