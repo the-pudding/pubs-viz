@@ -7,95 +7,82 @@ const $secondDropdown = d3.selectAll('.second-select')
 const $nav = d3.selectAll('.nav__choices')
 const $selectedNav = $nav.selectAll('.is-selected')
 let navClass = $selectedNav.node().className
+const $madlibCount = d3.select('#madlib-count')
+const $madlibName = d3.select('#madlib-name')
+const $madlibBlurb = d3.select('#madlib-blurb')
+
+const sentences = [
+	'Bloody good!',
+	'Better eat a full English Breakfast!',
+	'One pint, two pints, three pints, floor!',
+	'You’re going to get pissed!',
+	'There goes your liver!'
+]
 
 // helper functions
-function splitNames1(str) {
-	let splt = str.substr(0,str.indexOf(' '))
-	return splt
-}
-
-function splitNames2(str) {
-	let splt = str.substr(str.indexOf(' '), str.length)
-	return splt
-}
-
-function setStartingDropdown() {
-	$firstDropdown.node().options[8].selected = true
-	$secondDropdown.node().options[21].selected = true
+function setStartingDropdown(category) {
+	if (category === 'color-noun') {
+		$firstDropdown.node().options[27].selected = true
+	}
+	else if (category === 'royalty-noun') {
+		$firstDropdown.node().options[34].selected = true
+	}
+	else if (category === 'noun-inn') {
+		$firstDropdown.node().options[35].selected = true
+	}
+	else if (category === 'noun-noun') {
+		$firstDropdown.node().options[8].selected = true
+	}
 }
 
 function handleDropdownChange() {
-	const $dropdownClass = this.className
-	if ($dropdownClass === 'first-select') {
-		const firstVal = this.value
-		const secondVal = ($secondDropdown.node()).options[($secondDropdown.node()).selectedIndex].value
-		$secondDropdown.node().options[0].selected = true
-		$secondDropdown.classed('needSelect', true)
-	}
-	if ($dropdownClass === 'second-select') {
-		const firstVal = ($firstDropdown.node()).options[($firstDropdown.node()).selectedIndex].value
-		const secondVal = this.value
-		console.log(firstVal, secondVal)
-		$firstDropdown.node().options[0].selected = true
-		$firstDropdown.classed('needSelect', true)
-	}
+	const dropdownVal = this.value
+	const individPubData = categoryData.filter(d => d.pub == dropdownVal)
+	buildSentence(individPubData[0])
+}
+
+function buildSentence(data) {
+	$madlibCount.text(data.count)
+	$madlibName.text(data.pub)
+	$madlibBlurb.text(function() {
+		if (data.count == 10) { return sentences[0] }
+		else if (data.count > 10 && data.count < 20) { return sentences[1] }
+		else if (data.count > 20 && data.count < 50) { return sentences[2] }
+		else if (data.count > 50 && data.count < 100) { return sentences[3] }
+		else if (data.count > 100) { return sentences[4] }
+	})
 }
 
 function buildDropDown(data, category) {
 
-	let splitData = data.map(d => ({
-		...d,
-		pub1: splitNames1(d.pub),
-		pub2: splitNames2(d.pub),
-	}))
+	let sortedData = data.sort(function(a,b) { return d3.descending(b.pub1, a.pub1) })
+	let pushedData = [];
+	pushedData.push(sortedData.map(function(obj) { return obj.pub; }).sort())
 
-	let splitData1 = splitData.sort(function(a,b) { return d3.descending(b.pub1, a.pub1) })
-	let splitData2 = splitData.sort(function(a,b) { return d3.descending(b.pub2, a.pub2) })
-	let uniqSplit1 = _.uniqBy(splitData1, 'pub1')
-	let uniqSplit2 = _.uniqBy(splitData2, 'pub2')
-	let uniqData1 = [];
-	uniqData1.push(uniqSplit1.map(function(obj) { return obj.pub1; }).sort())
-	//uniqData1 = uniqData1[0].unshift('Color')
-	let uniqData2 = [];
-	uniqData2.push(uniqSplit2.map(function(obj) { return (obj.pub2).trim(); }).sort())
+	pushedData[0].unshift('Pick a pub')
 
-	let cat1 = category.split('-')[0]
-	let cat2 = category.split('-')[1]
-
-	uniqData1[0].unshift(cat1)
-	uniqData2[0].unshift(cat2)
+	$firstDropdown.selectAll('option').remove()
 
 	$firstDropdown.selectAll('option')
-		.data(uniqData1[0])
+		.data(pushedData[0])
 		.enter()
 		.append('option')
 		.text(d => d)
 		.attr('value', d => d)
 
-	$secondDropdown.selectAll('option')
-		.data(uniqData2[0])
-		.enter()
-		.append('option')
-		.text(d => d)
-		.attr('value', d => d)
-
-	setStartingDropdown()
+	setStartingDropdown(category)
 }
 
-function organizeData(data) {
-	navClass = navClass.split(' ')[0]
-	navClass = navClass.slice(5)
-	categoryData = data.filter(d => d.category == navClass)
-
-	buildDropDown(categoryData, navClass)
+function organizeData(data, category) {
+	categoryData = data
+	buildDropDown(categoryData, category)
 
 	$firstDropdown.on('change', handleDropdownChange)
-	$secondDropdown.on('change', handleDropdownChange)
 }
 
 
-function init(data) {
-	organizeData(data)
+function init(data, category) {
+	organizeData(data, category)
 }
 
-export default { init };
+export default { init, buildSentence, setStartingDropdown };

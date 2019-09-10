@@ -6,6 +6,7 @@ import './pudding-chart/count-table'
 let pubsMap;
 let pubCountsData = null;
 let pubCountsTable = null;
+let individPubData = [];
 let coordinates = [
 	[-122.48369693756104, 37.83381888486939],
 	[-122.48348236083984, 37.83317489144141],
@@ -46,12 +47,33 @@ function setupCountTable(data, category) {
 		.puddingCountTable(category)
 }
 
+function filterByPub(data, category) {
+	if (category === 'color-noun') {
+		individPubData = data.filter(d => d.pub == 'Red Lion')
+	} else if (category === 'royalty-noun'){
+		individPubData = data.filter(d => d.pub == 'Royal Oak')
+	} else if (category === 'noun-inn'){
+		individPubData = data.filter(d => d.pub == 'Crown Inn')
+	} else if (category === 'noun-noun'){
+		individPubData = data.filter(d => d.pub == 'Fox & Hounds')
+	}
+	madlib.buildSentence(individPubData[0])
+}
+
 function handlePickPattern() {
 	let $selectedPattern = d3.select(this)
 	$pattern.classed('is-selected', false)
 	$selectedPattern.classed('is-selected', true)
 
-	madlib.init(pubCountsData)
+	let category = $selectedPattern.node().className
+	category = category.split('__')[1]
+	category = category.split(' ')[0]
+
+	let categoryData = pubCountsData.filter(d => d.category == category)
+
+	filterByPub(categoryData, category)
+
+	madlib.init(categoryData, category)
 }
 
 function jumpTo(element) {
@@ -174,8 +196,9 @@ function init() {
 	loadData().then(result => {
 		// organize data
 		pubCountsData = result[0]
+		let startingData = pubCountsData.filter(d => d.category == 'color-noun')
 
-		madlib.init(pubCountsData)
+		madlib.init(startingData, 'color-noun')
 
 		setupCountTable(pubCountsData, 'color-noun')
 		setupCountTable(pubCountsData, 'royalty-noun')
