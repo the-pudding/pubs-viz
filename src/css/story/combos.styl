@@ -7,14 +7,32 @@
 		width 100%
 		display flex
 		flex-direction row
-		justify-content space-between
-		margin 3rem auto
+		justify-content center
+		margin 1rem auto
+		flex-wrap wrap
+		+mq('bp-3')
+			justify-content space-between
+		+mq('bp-4')
+			margin 3rem auto
+			justify-content center
+		+mq('bp-6')
+			justify-content space-between
 
 		.combo-block
 			display flex
 			flex-direction column
-			width 25%
+			width 100%
 			padding 1rem
+			margin-bottom 2rem
+			+mq('bp-2-5')
+				width 80%
+			+mq('bp-3')
+				width 50%
+			+mq('bp-4')
+				width 20rem
+			+mq('bp-6')
+				width 25%
+				margin-bottom 0
 
 			.total-count
 				color $tan-medium
@@ -39,6 +57,7 @@
 					margin 0
 					text-align center
 					width calc(50% - 3rem)
+					set-type-size('root', true)
 
 				.plus
 					color $red-accent
@@ -57,7 +76,7 @@
 
 			.example
 				text-align center
-				set-type-size('xxxx-large', true)
+				set-type-size('xxx-large', true)
 				font-family $pirata
 				color $brown-dark
 
