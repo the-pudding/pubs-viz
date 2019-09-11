@@ -37,18 +37,47 @@
 			margin-bottom 1rem
 
 			p
-				font-family $national
-				font-weight 700
-				text-transform uppercase
+				font-family $pirata
+				//text-transform uppercase
 				margin 0
 				color $brown-dark
+				set-type-size('xx-large', true)
 
 			img
 				width 4.5rem
 				margin-left 0.5rem
 
+		.labels
+			display none
+			flex-direction row
+			width 100%
+			+mq('bp-3-5')
+				display flex
+
+			.inset-div
+				width 35%
+				display flex
+				flex-direction row
+
+				.num
+					width 3rem
+
+				.name
+					width calc(100% - 3rem)
+
+			p
+				color $tan-medium
+				text-transform uppercase
+				font-family $national
+				set-type-size('root', true)
+				margin 0
+
+			.add
+				width 65%
+
+
 		.pub-adds
-			height 20rem
+			height 28rem
 			overflow hidden
 			position relative
 			margin-bottom 1rem
@@ -69,32 +98,58 @@
 					set-type-size('root', true)
 					margin 0
 
-			.table-pub-num
-				width calc(5% + 1rem)
-				padding-right 1rem
-				text-align right
-
-			.table-pub-name
-				width calc(25% + 1rem)
-				padding-right 1rem
-
-			.table-pub-add
-				width calc(70% + 1rem)
-				padding-right 1rem
-
 			.g-vis
+
+				a
+					display block
+					border-bottom none
+					cursor pointer
+					pointer-events all
 
 				.table-row
 					display flex
-					flex-direction row
+					flex-direction column
 					border-bottom 1px solid $tan-medium
-					padding 0.5rem 0
+					padding 0.5rem 0.25rem
+					+mq('bp-3-5')
+						flex-direction row
+					&:hover
+						background-color lighten($tan-medium, 25)
 
 					p
 						margin 0
 						color $brown-dark
 						font-family $national
 						set-type-size('root', true)
+
+				.inset-div
+					width 100%
+					display flex
+					flex-direction row
+					+mq('bp-3-5')
+						width 35%
+
+					.table-pub-num
+						width 3rem
+						padding-right 0
+						text-align left
+						font-weight 700
+						color $red-accent
+						+mq('bp-3-5')
+							text-align right
+							padding-right 1rem
+
+					.table-pub-name
+						width calc(100% - 3rem)
+						padding-right 0
+						font-weight 700
+						+mq('bp-3-5')
+							padding-right 1rem
+
+				.table-pub-add
+					width 10%
+					+mq('bp-3-5')
+						width 65%
 
 			.fade
 				position absolute

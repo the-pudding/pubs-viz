@@ -35,19 +35,11 @@ d3.selection.prototype.puddingItineraryTable = function init(pubName) {
 			let split = str.substring(str.indexOf(',')+1)
 			return split
 		}
-		//
-		// function mouseoverTable() {
-		// 	let currRowClass = d3.select(this).node().className
-		// 	let currentRowClassSplit = currRowClass.split(' ')[1]
-		//
-		// 	d3.selectAll('.table-row').classed('is-highlight', false)
-		// 	let $highlightRows = d3.selectAll(`.${currentRowClassSplit}`)
-		// 	$highlightRows.classed('is-highlight', true)
-		// }
-		//
-		// function mouseoutTable() {
-		// 	d3.selectAll('.table-row').classed('is-highlight', false)
-		// }
+
+		function linkClick(){
+			const link = this.getAttribute('href')
+			window.location = link
+		}
 
 		function filterData() {
 			individAddData = data.filter(d => d.key == nameSpan)
@@ -70,19 +62,22 @@ d3.selection.prototype.puddingItineraryTable = function init(pubName) {
 					.append('a')
 					.attr('xlink:href', d => `https://www.pubsgalore.co.uk/pubs/${d.pubID}/`)
 					.attr('class', 'table-link')
-					// .on('mouseover', mouseoverTable)
-					// .on('mouseout', mouseoutTable)
+					.on('click', linkClick)
 
 				const tableDiv = tableRow
 					.append('div')
 					.attr('class', 'table-row')
 
-				const pubNum = tableDiv
+				const nameDiv = tableDiv
+						.append('div')
+						.attr('class', 'inset-div')
+
+				const pubNum = nameDiv
 					.append('p')
 					.text(function(d, i) { return i + 1 })
 					.attr('class', 'table-pub-num')
 
-				const pubName = tableDiv
+				const pubName = nameDiv
 					.append('p')
 					.attr('class', 'table-pub-name')
 					.text(d => splitName(d.pubName))
