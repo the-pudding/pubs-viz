@@ -38,11 +38,13 @@ const $seeMoreButtonColor = d3.select('#color-noun button')
 const $seeMoreButtonRoyalty = d3.select('#royalty-noun button')
 const $seeMoreButtonInn = d3.select('#noun-inn button')
 const $seeMoreButtonNoun = d3.select('#noun-noun button')
+const $seeMoreButtonMap = d3.select('#map-button')
 const $allButtons = d3.selectAll('.combo-block button')
 const $allFades= d3.selectAll('.combo-block fade')
 const $pattern = d3.selectAll('.nav__choices p')
 const $combosSection = d3.selectAll('.combos')
 const $itineraryTableContainer = d3.selectAll('#map-table .pub-adds')
+const $mapTableSection = d3.selectAll('#map-table')
 
 function setupCountTable(data, category) {
 	const $countsTableContainer = d3.selectAll(`#${category} .pub-counts`)
@@ -126,6 +128,29 @@ function handleSeeMore() {
 		d3.select(`#${category} .fade`).classed('is-visible', true)
 		categoryTable.classed('is-visible', false)
 		jumpTo($combosSection.node())
+	}
+}
+
+function handleMapSeeMore() {
+	const currButton = d3.select(this)
+	const currButtonClass = currButton.node().className
+	console.log(currButtonClass)
+
+	if (currButtonClass == 'open') {
+		currButton.classed('open', false)
+		currButton.classed('collapse', true)
+		d3.select(this).text('See fewer')
+		d3.select('.pub-adds').classed('is-visible', true)
+		d3.select('.pub-adds .fade').classed('is-visible', false)
+	}
+
+	if (currButtonClass == 'collapse') {
+		currButton.classed('collapse', false)
+		currButton.classed('open', true)
+		d3.select(this).text('See all')
+		d3.select('.pub-adds').classed('is-visible', false)
+		d3.select('.pub-adds .fade').classed('is-visible', true)
+		jumpTo($mapTableSection.node())
 	}
 }
 
@@ -233,6 +258,7 @@ function init() {
 		$seeMoreButtonRoyalty.on('click', handleSeeMore)
 		$seeMoreButtonInn.on('click', handleSeeMore)
 		$seeMoreButtonNoun.on('click', handleSeeMore)
+		$seeMoreButtonMap.on('click', handleMapSeeMore)
 		$pattern.on('click', handlePickPattern)
 	}).catch(console.error)
 

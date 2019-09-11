@@ -20,12 +20,13 @@
 			background-color lighten($tan-medium, 25)
 			text-transform uppercase
 			set-type-size('small', true)
-			display none
 			color $brown-dark
+			display flex
+			justify-content center
 			&:hover
 				background-color lighten($tan-medium, 15)
 
-			&.is-visible
+			&.open
 				display flex
 				justify-content center
 
@@ -47,8 +48,8 @@
 				margin-left 0.5rem
 
 		.pub-adds
-			//height 7rem
-			//overflow hidden
+			height 20rem
+			overflow hidden
 			position relative
 			margin-bottom 1rem
 
