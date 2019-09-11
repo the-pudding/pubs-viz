@@ -36,7 +36,20 @@ function loadA(file) {
   });
 }
 
+function loadB(file) {
+  return new Promise((resolve, reject) => {
+    d3.csv(`assets/data/${file}`)
+      .then(result => {
+        const clean = d3.nest()
+          .key(d => d.stripped)
+          .entries(result)
+        resolve(clean);
+      })
+      .catch(reject);
+  });
+}
+
 export default function loadData() {
-  const loads = [loadA('pub-counts.csv')];
+  const loads = [loadA('pub-counts.csv'), loadB('pub-addresses.csv')];
   return Promise.all(loads);
 }

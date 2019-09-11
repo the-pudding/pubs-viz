@@ -1,5 +1,8 @@
 const _ = require('lodash');
+import loadData from './load-data'
+import graphic from './graphic'
 
+let pubAddressData = null;
 let categoryData = null;
 const $firstDropdown = d3.selectAll('.first-select')
 const $secondDropdown = d3.selectAll('.second-select')
@@ -39,6 +42,10 @@ function handleDropdownChange() {
 	const dropdownVal = this.value
 	const individPubData = categoryData.filter(d => d.pub == dropdownVal)
 	buildSentence(individPubData[0])
+
+	const pubName = dropdownVal.toLowerCase()
+
+	graphic.setupItineraryTable(pubAddressData, pubName)
 }
 
 function buildSentence(data) {
@@ -82,7 +89,10 @@ function organizeData(data, category) {
 
 
 function init(data, category) {
-	organizeData(data, category)
+	loadData().then(result => {
+		pubAddressData = result[1]
+		organizeData(data, category)
+	}).catch(console.error)
 }
 
 export default { init, buildSentence, setStartingDropdown };

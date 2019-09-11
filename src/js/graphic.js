@@ -2,10 +2,13 @@
 import loadData from './load-data'
 import madlib from './madlib-dropdown'
 import './pudding-chart/count-table'
+import './pudding-chart/itinerary-table'
 
 let pubsMap;
 let pubCountsData = null;
 let pubCountsTable = null;
+let pubAddressData = null;
+let pubItineraryTable = null;
 let individPubData = [];
 let coordinates = [
 	[-122.48369693756104, 37.83381888486939],
@@ -39,12 +42,19 @@ const $allButtons = d3.selectAll('.combo-block button')
 const $allFades= d3.selectAll('.combo-block fade')
 const $pattern = d3.selectAll('.nav__choices p')
 const $combosSection = d3.selectAll('.combos')
+const $itineraryTableContainer = d3.selectAll('#map-table .pub-adds')
 
 function setupCountTable(data, category) {
 	const $countsTableContainer = d3.selectAll(`#${category} .pub-counts`)
 	pubCountsTable = $countsTableContainer
 		.datum(data)
 		.puddingCountTable(category)
+}
+
+function setupItineraryTable(data, pubName) {
+	pubItineraryTable = $itineraryTableContainer
+		.datum(data)
+		.puddingItineraryTable(pubName)
 }
 
 function filterByPub(data, category) {
@@ -74,6 +84,16 @@ function handlePickPattern() {
 	filterByPub(categoryData, category)
 
 	madlib.init(categoryData, category)
+
+	if (category == 'color-noun') {
+		setupItineraryTable(pubAddressData, 'red lion')
+	} else if (category == 'royalty-noun') {
+		setupItineraryTable(pubAddressData, 'royal oak')
+	} else if (category == 'noun-inn') {
+		setupItineraryTable(pubAddressData, 'crown inn')
+	} else if (category == 'noun-noun') {
+		setupItineraryTable(pubAddressData, 'fox & hounds')
+	}
 }
 
 function jumpTo(element) {
@@ -196,6 +216,7 @@ function init() {
 	loadData().then(result => {
 		// organize data
 		pubCountsData = result[0]
+		pubAddressData = result[1]
 		let startingData = pubCountsData.filter(d => d.category == 'color-noun')
 
 		madlib.init(startingData, 'color-noun')
@@ -204,6 +225,7 @@ function init() {
 		setupCountTable(pubCountsData, 'royalty-noun')
 		setupCountTable(pubCountsData, 'noun-inn')
 		setupCountTable(pubCountsData, 'noun-noun')
+		setupItineraryTable(pubAddressData, 'red lion')
 
 		buildMap()
 
@@ -216,4 +238,4 @@ function init() {
 
 }
 
-export default { init, resize };
+export default { init, resize, setupItineraryTable };
