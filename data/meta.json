@@ -1,6 +1,6 @@
 {
 	"title": "Ye Olde Mad-Lib Pub Crawl Generator",
-	"description": "Sentence case dek goes down here. Modify these in data/meta.json.",
+	"description": "We gathered pub names from Pubs Galore, the largest crowdsourced list of pubs in England, Scotland, Wales and Northern Ireland, and plotted the shortest route between pubs of the same name.",
 	"site": "https://pudding.cool",
 	"siteName": "The Pudding",
 	"url": "https://pudding.cool/year/month/name/",

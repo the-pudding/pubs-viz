@@ -1,6 +1,7 @@
 const _ = require('lodash');
 import loadData from './load-data'
 import graphic from './graphic'
+import mapbox from './map'
 
 let pubAddressData = null;
 let categoryData = null;
@@ -46,6 +47,8 @@ function handleDropdownChange() {
 	const pubName = dropdownVal.toLowerCase()
 
 	graphic.setupItineraryTable(pubAddressData, pubName)
+	let strippedName = pubName.replace(/\s/g, '')
+	mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
 }
 
 function buildSentence(data) {

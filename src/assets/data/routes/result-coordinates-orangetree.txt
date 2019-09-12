@@ -1,0 +1,1 @@
+{"message":"Coordinate is invalid: nan,nan","code":"InvalidInput"}

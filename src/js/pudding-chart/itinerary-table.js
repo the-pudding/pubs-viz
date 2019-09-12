@@ -13,8 +13,6 @@ d3.selection.prototype.puddingItineraryTable = function init(pubName) {
 		let data = $sel.datum();
 		let individAddData = [];
 
-		console.log(data, pubName)
-
 		// dom elements
 		let $vis = null;
 		const nameSpan = d3.selectAll('#madlib-name').text().toLowerCase()
