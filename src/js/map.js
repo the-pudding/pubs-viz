@@ -16,6 +16,15 @@ function loadRoute(file) {
           pubsMap.removeLayer(lastLayer)
         }
 
+        let geojson = {
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: cleanRoute
+          }
+        }
+
         addRoute(cleanRoute, fileSplit)
         resolve(cleanRoute)
       })
