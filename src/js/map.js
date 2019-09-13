@@ -5,12 +5,16 @@ function loadRoute(file) {
   let fileSplit = file.split('-')[2]
   fileSplit = fileSplit.split('.')[0]
   return new Promise((resolve, reject) => {
-    d3.json(`assets/data/routes/${file}`)
+    d3.json(`assets/data/coordinates-only/${file}`)
       .then(result => {
-        let cleanRoute = result.routes[0].geometry.coordinates
+        let cleanRoute = result
+
+        console.log(cleanRoute)
 
         let lastLayer = pubsMap.getStyle().layers
         lastLayer = lastLayer[lastLayer.length-1].id
+
+        console.log(lastLayer)
 
         if (pubsMap.getLayer('adameve') || pubsMap.getLayer(lastLayer)) {
           pubsMap.removeLayer(lastLayer)
@@ -24,6 +28,8 @@ function loadRoute(file) {
             coordinates: cleanRoute
           }
         }
+
+        console.log(geojson)
 
         addRoute(cleanRoute, fileSplit)
         resolve(cleanRoute)

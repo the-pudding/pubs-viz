@@ -70,7 +70,7 @@ d3.selection.prototype.puddingCountTable = function init(category) {
 
 				const pubCount = tableRow
 					.append('p')
-					.text(d => d.count)
+					.text(d => d.new_count)
 					.attr('class', 'table-pub-count')
 
 				Chart.resize();

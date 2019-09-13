@@ -63,16 +63,13 @@ function filterByPub(data, category) {
 		let pubName = 'Crown Inn'
 		let strippedName = stripName(pubName)
 		individPubData = data.filter(d => d.pub == pubName)
-		mapbox.loadRoute(`result-coordinates-brassmonkey.txt`)
-		//TODO delete line above, uncomment line below
-		//mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
+		console.log(`result-coordinates-${strippedName}.txt`)
+		mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
 	} else if (category === 'noun-noun'){
 		let pubName = 'Fox & Hounds'
 		let strippedName = stripName(pubName)
 		individPubData = data.filter(d => d.pub == pubName)
-		mapbox.loadRoute(`result-coordinates-bushinn.txt`)
-		//TODO delete line above, uncomment line below
-		//mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
+		mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
 	}
 	madlib.buildSentence(individPubData[0])
 }
