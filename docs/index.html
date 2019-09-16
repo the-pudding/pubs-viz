@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang='en' data-version='1568387877747'>
+<html lang='en' data-version='1568644270326'>
 
 <head>
 
@@ -369,7 +369,7 @@ Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{valu
 			</p>
 				<p class='prose'>If you’re looking to knock back a pint in the UK, there’s a good chance you’ll wander into a watering hole named the Red Lion — the <a href=https://www.morningadvertiser.co.uk/Article/2019/05/22/What-are-the-most-popular-pub-names-in-the-UK>most popular pub name</a> in the country. And if you were looking to take in a pint at each Red Lion, well good luck, there are 352 and that’s one hell of a pub crawl.</p>
 				<p class='prose'>But here at The Pudding, we’re up for the challenge. (Note: if you <i>really</i> want to test fate, try this <a href=http://www.math.uwaterloo.ca/tsp/pubs/index.html>crawl of every single pub</a> in the UK).</p>
-				<p class='prose'>We gathered pub names from <a href=https://www.pubsgalore.co.uk/>Pubs Galore</a>, the largest crowdsourced list of pubs in England, Scotland, Wales and Northern Ireland, and plotted the shortest route between pubs of the same name. That means 352 pints at Red Lions, or 258 pints at Royal Oaks, or 176 pints at Crown Inns — the three most common pub names. And, these names follow pretty familiar naming patterns: color+noun, royalty+noun, or noun+inn.</p>
+				<p class='prose'>We gathered pub names from <a href=https://www.pubsgalore.co.uk/>Pubs Galore</a>, the largest crowdsourced list of pubs in England, Scotland, Wales and Northern Ireland, and plotted the shortest route between pubs of the same name. That means 339 pints at Red Lions, or 258 pints at Royal Oaks, or 176 pints at Crown Inns — the three most common pub names. And, these names follow pretty familiar naming patterns: color+noun, royalty+noun, or noun+inn.</p>
 				<p class='prose'>Of course some pubs stray from these patterns (we’re looking at you <a href=https://www.theguardian.com/uk-news/2019/jul/16/pub-longest-name-uk-reopens-next-pub-shortest-stalybridge-rifleman-q>The Old Thirteenth Cheshire Astley Volunteer Rifleman Corps Inn</a>), so let’s just limit ourselves to the common ones:</p>
 		</div>
 		<section class='combos'>
@@ -511,7 +511,7 @@ Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{valu
 		</section>
 		<section class='methods'>
 			<h5>Data & Methods</h5>
-				<p class='prose'>Over 41,000 currently open pubs <a href=https://github.com/the-pudding/pubs-data>were collected</a> from <a href=https://www.pubsgalore.co.uk/>Pubs Galore</a>, where members maintain the largest list of pubs in the United Kingdom (England, Scotland, Wales and Northern Ireland). We focused on four common naming patterns and filtered the pubs into “color + noun”, “royalty + noun”, “noun + inn/hotel” and “noun & noun” groups. Then, we counted up pubs with the same name (i.e. there are 352 pubs named “Red Lion” and 258 pubs named “Royal Oak”), giving us over 200 unique names within our patterns. We removed names where there were fewer than 10 pubs, because you need at least 10 for a proper pub crawl.</p>
+				<p class='prose'>Over 41,000 currently open pubs <a href=https://github.com/the-pudding/pubs-data>were collected</a> from <a href=https://www.pubsgalore.co.uk/>Pubs Galore</a>, where members maintain the largest list of pubs in the United Kingdom (England, Scotland, Wales and Northern Ireland). We focused on four common naming patterns and filtered the pubs into “color + noun”, “royalty + noun”, “noun + inn/hotel” and “noun & noun” groups. Then, we counted up pubs with the same name (i.e. there are 352 pubs named “Red Lion” and 258 pubs named “Royal Oak”), giving us over 200 unique names within our patterns. As we were doing the grouping, we removed filler words, such as “the,” “old,” “lower,” “"of hermitage,” "ye olde,” and any mention of “Wetherspoons” (even though we love a good Wetherspoons, let’s be real). We removed names where there were fewer than 10 pubs, because you need at least 10 for a proper pub crawl.</p>
 				<p class='prose'>To calculate the shortest pub crawl between pubs with the same name, we used <a href=https://docs.mapbox.com/api/navigation/#optimization>Mapbox’s Optimization API</a>, which returns a “duration-optimized route between the input coordinates.” The API works to solve the <a href=https://en.wikipedia.org/wiki/Travelling_salesman_problem>Traveling Salesperson Problem</a> (TSP), or the question: “Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?” The Optimization API returned the pub stops coordinates in the order in which we needed to visit them for the shortest route. We then used <a href=https://docs.mapbox.com/help/glossary/directions-api/>Mapbox’s Direction API</a> to plot that route between pubs. Finally, we used <a href=https://docs.mapbox.com/mapbox-gl-js/api/>Mapbox GL JS</a> to display the routes on the above map. The <a href=https://blog.mapbox.com/designing-the-vintage-style-in-mapbox-studio-9da4aa2a627f>vintage style</a> was designed by Amy Lee Walton, a Principal Designer at Mapbox. Mapbox FTW!</p>
 				<p class='prose'>All the drawings used in this piece have been released into the public domain by the <a href=https://www.flickr.com/photos/britishlibrary/albums>British Library on flickr</a>.</p>
 		</section>
@@ -637,7 +637,7 @@ Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{valu
 
 	<script src='https://pudding.cool/assets/scripts/d3.v5.9.1.min.js'></script>
 	<script src='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
-	<script src='main.js?version=1568387877747' async></script>
+	<script src='main.js?version=1568644270326' async></script>
 </body>
 
 </html>
