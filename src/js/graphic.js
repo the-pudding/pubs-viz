@@ -137,7 +137,7 @@ function handleSeeMore() {
 function handleMapSeeMore() {
 	const currButton = d3.select(this)
 	const currButtonClass = currButton.node().className
-	console.log(currButtonClass)
+	//console.log(currButtonClass)
 
 	if (currButtonClass == 'open') {
 		currButton.classed('open', false)
