@@ -49,7 +49,6 @@ function loadRoute(file) {
         //Gets the ID of the last layer to remove on change
         let lastLayer = pubsMap.getStyle().layers
         lastLayer = lastLayer[lastLayer.length-1].id
-        console.log(lastLayer)
 
         //TODO change to red lion
         if (pubsMap.getLayer('adameve') || pubsMap.getLayer(lastLayer)) {
