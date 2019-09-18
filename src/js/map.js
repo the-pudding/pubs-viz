@@ -1,44 +1,8 @@
 let pubsMap;
 let coordinates = [];
+const polyline = require('@mapbox/polyline');
 
-function loadRoute(file) {
-  let fileSplit = file.split('-')[2]
-  fileSplit = fileSplit.split('.')[0]
-  return new Promise((resolve, reject) => {
-    d3.json(`assets/data/coordinates-only/${file}`)
-      .then(result => {
-        let cleanRoute = result
-
-        console.log(cleanRoute)
-
-        let lastLayer = pubsMap.getStyle().layers
-        lastLayer = lastLayer[lastLayer.length-1].id
-
-        console.log(lastLayer)
-
-        if (pubsMap.getLayer('adameve') || pubsMap.getLayer(lastLayer)) {
-          pubsMap.removeLayer(lastLayer)
-        }
-
-        let geojson = {
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            type: 'LineString',
-            coordinates: cleanRoute
-          }
-        }
-
-        console.log(geojson)
-
-        addRoute(cleanRoute, fileSplit)
-        resolve(cleanRoute)
-      })
-      .catch(reject)
-  })
-}
-
-//MAPBOX
+//MAPBOX BUILDS INITIAL MAP
 function buildMap() {
 	// Initializes mapbox mapbox
 	mapboxgl.accessToken =
@@ -58,6 +22,52 @@ function buildMap() {
 	pubsMap.addControl(new mapboxgl.NavigationControl());
 }
 
+//DIRECTIONS API INTO GEOJSON
+function directionsToGeoJSON(directions) {
+  return {
+    type: 'FeatureCollection',
+    features: directions.routes.map(route => {
+      return {
+        type: 'Feature',
+        properties: {},
+        geometry: typeof route.geometry === 'string' ? polyline.toGeoJSON(route.geometry) : route.geometry
+      };
+    })
+  };
+}
+
+//LOADS CORRECT FILE
+function loadRoute(file) {
+  //Creates ID name for map
+  let fileSplit = file.split('-')[2]
+  fileSplit = fileSplit.split('.')[0]
+
+  //Loads data for route
+  return new Promise((resolve, reject) => {
+    d3.json(`assets/data/routes/${file}`)
+      .then(result => {
+        //Gets the ID of the last layer to remove on change
+        let lastLayer = pubsMap.getStyle().layers
+        lastLayer = lastLayer[lastLayer.length-1].id
+
+        //TODO change to red lion
+        if (pubsMap.getLayer('adameve') || pubsMap.getLayer(lastLayer)) {
+          pubsMap.removeLayer(lastLayer)
+        }
+
+        //Formats directions into geoJSON
+        let geoJSONdirections = directionsToGeoJSON(result)
+
+        console.log(JSON.stringify(geoJSONdirections))
+
+        addRoute(geoJSONdirections, fileSplit)
+        resolve(result)
+      })
+      .catch(reject)
+  })
+}
+
+//TODO FOR ADDING PUB POINTS
 function addPubPoints(coordinates) {
 	pubsMap.addLayer({
 		'id': 'pubs',
@@ -86,21 +96,16 @@ function addPubPoints(coordinates) {
 	})
 }
 
-function addRoute(coordinates, id){
+//ADDS ROUTE TO MAP
+function addRoute(geoJSONdirections, id){
+  console.log(geoJSONdirections)
 
 	pubsMap.addLayer({
 		'id': id,
 		'type': 'line',
 		'source': {
 			'type': 'geojson',
-			'data': {
-				'type': 'Feature',
-				'properties':{},
-				'geometry': {
-					'type': 'LineString',
-					'coordinates': coordinates
-				}
-			}
+			'data': geoJSONdirections
 		},
 		'layout': {
 			'line-join': 'round',
@@ -117,15 +122,6 @@ function init() {
   buildMap()
   //TODO change to red lion
   loadRoute('result-coordinates-adameve.txt')
-  //   .then(result => {
-  //     console.log(result)
-  //     let cleanRoute = result.routes[0].geometry.coordinates
-  //     console.log(cleanRoute)
-  //     pubsMap.on('load', function(){
-  //       addRoute(cleanRoute)
-  //       //addPubPoints(coordinates)
-  //   })
-  // })
 }
 
 export default { init, loadRoute };
