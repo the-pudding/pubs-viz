@@ -2,6 +2,10 @@ let pubsMap;
 let coordinates = [];
 const polyline = require('@mapbox/polyline');
 
+const $madlibMiles = d3.select('#madlib-miles')
+const $madlibKilometers = d3.select('#madlib-kilometers')
+const formatComma = d3.format(",")
+
 //MAPBOX BUILDS INITIAL MAP
 function buildMap() {
 	// Initializes mapbox mapbox
@@ -30,10 +34,25 @@ function directionsToGeoJSON(directions) {
       return {
         type: 'Feature',
         properties: {},
-        geometry: typeof route.geometry === 'string' ? polyline.toGeoJSON(route.geometry) : route.geometry
+        geometry: typeof route.geometry === 'string' ? polyline.toGeoJSON(route.geometry) : route.geometry,
+				distance: route.distance,
+				duration: route.duration
       };
     })
   };
+}
+
+function updateDistance(geoJSONdirections) {
+	let distance = geoJSONdirections.features[0].distance
+	let distanceInKilometers = Math.round(distance/1000)
+	let distanceInMiles = Math.round(distanceInKilometers*0.62137119223)
+
+	let duration = geoJSONdirections.features[0].duration
+	let durationInMins = duration/60
+	let durationInHours = durationInMins/60
+
+	$madlibMiles.text(formatComma(distanceInMiles))
+	$madlibKilometers.text(formatComma(distanceInKilometers))
 }
 
 //LOADS CORRECT FILE
@@ -50,6 +69,8 @@ function loadRoute(file) {
         let lastLayer = pubsMap.getStyle().layers
         lastLayer = lastLayer[lastLayer.length-1].id
 
+				console.log(lastLayer)
+
         //TODO change to red lion
         if (pubsMap.getLayer('adameve') || pubsMap.getLayer(lastLayer)) {
           pubsMap.removeLayer(lastLayer)
@@ -58,6 +79,7 @@ function loadRoute(file) {
         //Formats directions into geoJSON
         let geoJSONdirections = directionsToGeoJSON(result)
 
+				updateDistance(geoJSONdirections)
         addRoute(geoJSONdirections, fileSplit)
         resolve(result)
       })
