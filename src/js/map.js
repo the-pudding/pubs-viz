@@ -69,10 +69,9 @@ function loadRoute(file) {
         let lastLayer = pubsMap.getStyle().layers
         lastLayer = lastLayer[lastLayer.length-1].id
 
-				console.log(lastLayer)
-
         //TODO change to red lion
         if (pubsMap.getLayer('adameve') || pubsMap.getLayer(lastLayer)) {
+					console.log(lastLayer)
           pubsMap.removeLayer(lastLayer)
         }
 
