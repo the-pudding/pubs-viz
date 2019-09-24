@@ -72,6 +72,7 @@ function filterByPub(data, category) {
 		mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
 	}
 	madlib.buildSentence(individPubData[0])
+	mapbox.removeSource()
 }
 
 function handlePickPattern() {

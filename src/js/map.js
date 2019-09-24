@@ -55,6 +55,14 @@ function updateDistance(geoJSONdirections) {
 	$madlibKilometers.text(formatComma(distanceInKilometers))
 }
 
+function removeSource() {
+	let lastLayer = pubsMap.getStyle().layers
+	lastLayer = lastLayer[lastLayer.length-1].id
+
+	pubsMap.removeLayer(lastLayer)
+	pubsMap.removeSource(lastLayer)
+}
+
 //LOADS CORRECT FILE
 function loadRoute(file) {
   //Creates ID name for map
@@ -66,20 +74,28 @@ function loadRoute(file) {
     d3.json(`assets/data/routes/${file}`)
       .then(result => {
         //Gets the ID of the last layer to remove on change
-        let lastLayer = pubsMap.getStyle().layers
-        lastLayer = lastLayer[lastLayer.length-1].id
 
-        //TODO change to red lion
-        if (pubsMap.getLayer('adameve') || pubsMap.getLayer(lastLayer)) {
-					console.log(lastLayer)
-          pubsMap.removeLayer(lastLayer)
-        }
+
+        // if (pubsMap.getLayer('adameve') || pubsMap.getLayer(lastLayer)) {
+        //   pubsMap.removeLayer(lastLayer)
+        // }
 
         //Formats directions into geoJSON
         let geoJSONdirections = directionsToGeoJSON(result)
 
 				updateDistance(geoJSONdirections)
         addRoute(geoJSONdirections, fileSplit)
+
+				//removesSource()
+
+				//TODO change to red lion
+				// if (pubsMap.getLayer(lastLayer).id == lastLayer) {
+				// 	console.log(pubsMap.getLayer(lastLayer))
+				// 	console.log(lastLayer)
+				// 	console.log(pubsMap.getStyle().layers)
+				// 	//pubsMap.removeSource(lastLayer)
+				// 	//pubsMap.removeLayer(lastLayer)
+				// }
         resolve(result)
       })
       .catch(reject)
@@ -142,4 +158,4 @@ function init() {
   loadRoute('result-coordinates-adameve.txt')
 }
 
-export default { init, loadRoute };
+export default { init, loadRoute, removeSource };
