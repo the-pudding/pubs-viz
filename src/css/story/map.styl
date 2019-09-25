@@ -46,11 +46,17 @@
 			img
 				width 4.5rem
 				margin-left 0.5rem
+				&.is-animate
+					animation-name tilt
+					animation-duration 1000ms
+					animation-iteration-count infinite
+					animation-timing-function linear
 
 		.labels
 			display none
 			flex-direction row
 			width 100%
+			padding 0 0.25rem
 			+mq('bp-3-5')
 				display flex
 
@@ -66,7 +72,7 @@
 					width calc(100% - 3rem)
 
 			p
-				color $tan-medium
+				color $tan-text
 				text-transform uppercase
 				font-family $national
 				set-type-size('root', true)
@@ -90,9 +96,10 @@
 				display flex
 				flex-direction row
 				justify-content space-between
+				padding 0 0.25rem
 
 				p
-					color $tan-medium
+					color $tan-text
 					text-transform uppercase
 					font-family $national
 					set-type-size('root', true)
@@ -163,3 +170,9 @@
 
 				&.is-visible
 					display inline-block
+
+@keyframes tilt {
+	0% {transform: rotate(0deg)}
+	50% {transform: rotate(5deg)}
+	100% {transform: rotate(0deg)}
+}

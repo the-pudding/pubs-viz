@@ -45,6 +45,7 @@ function stripName(str) {
 }
 
 function filterByPub(data, category) {
+	d3.selectAll('.nav__directions img').classed('is-animate', false)
 	if (category === 'color-noun') {
 		let pubName = 'Red Lion'
 		let strippedName = stripName(pubName)
@@ -133,6 +134,7 @@ function handleSeeMore() {
 }
 
 function handleMapSeeMore() {
+	d3.selectAll('.table__directions img').classed('is-animate', false)
 	const currButton = d3.select(this)
 	const currButtonClass = currButton.node().className
 	//console.log(currButtonClass)

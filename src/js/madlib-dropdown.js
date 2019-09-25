@@ -30,13 +30,13 @@ function setStartingDropdown(category) {
 		$firstDropdown.node().options[27].selected = true
 	}
 	else if (category === 'royalty-noun') {
-		$firstDropdown.node().options[20].selected = true
+		$firstDropdown.node().options[32].selected = true
 	}
 	else if (category === 'noun-inn') {
-		$firstDropdown.node().options[30].selected = true
+		$firstDropdown.node().options[35].selected = true
 	}
 	else if (category === 'noun-noun') {
-		$firstDropdown.node().options[8].selected = true
+		$firstDropdown.node().options[9].selected = true
 	}
 }
 
