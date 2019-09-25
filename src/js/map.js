@@ -86,16 +86,6 @@ function loadRoute(file) {
 				updateDistance(geoJSONdirections)
         addRoute(geoJSONdirections, fileSplit)
 
-				//removesSource()
-
-				//TODO change to red lion
-				// if (pubsMap.getLayer(lastLayer).id == lastLayer) {
-				// 	console.log(pubsMap.getLayer(lastLayer))
-				// 	console.log(lastLayer)
-				// 	console.log(pubsMap.getStyle().layers)
-				// 	//pubsMap.removeSource(lastLayer)
-				// 	//pubsMap.removeLayer(lastLayer)
-				// }
         resolve(result)
       })
       .catch(reject)
@@ -154,8 +144,7 @@ function addRoute(geoJSONdirections, id){
 
 function init() {
   buildMap()
-  //TODO change to red lion
-  loadRoute('result-coordinates-adameve.txt')
+  loadRoute('result-coordinates-redlion.txt')
 }
 
 export default { init, loadRoute, removeSource };

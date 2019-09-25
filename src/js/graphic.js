@@ -49,9 +49,7 @@ function filterByPub(data, category) {
 		let pubName = 'Red Lion'
 		let strippedName = stripName(pubName)
 		individPubData = data.filter(d => d.pub == pubName)
-		mapbox.loadRoute(`result-coordinates-blueanchor.txt`)
-		//TODO delete line above, uncomment line below
-		//mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
+		mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
 	} else if (category === 'royalty-noun'){
 		let pubName = 'Royal Oak'
 		let strippedName = stripName(pubName)
@@ -63,7 +61,6 @@ function filterByPub(data, category) {
 		let pubName = 'Crown Inn'
 		let strippedName = stripName(pubName)
 		individPubData = data.filter(d => d.pub == pubName)
-		//console.log(`result-coordinates-${strippedName}.txt`)
 		mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
 	} else if (category === 'noun-noun'){
 		let pubName = 'Fox & Hounds'

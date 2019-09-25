@@ -49,6 +49,7 @@ function handleDropdownChange() {
 
 	graphic.setupItineraryTable(pubAddressData, pubName)
 	let strippedName = pubName.replace(/\s/g, '')
+	console.log(strippedName)
 	mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
 	mapbox.removeSource()
 }
