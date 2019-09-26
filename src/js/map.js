@@ -5,6 +5,10 @@ const polyline = require('@mapbox/polyline');
 const $madlibMiles = d3.select('#madlib-miles')
 const $madlibKilometers = d3.select('#madlib-kilometers')
 const formatComma = d3.format(",")
+let popup = new mapboxgl.Popup({
+	closeButton: false,
+	closeOnClick: false
+})
 
 //MAPBOX BUILDS INITIAL MAP
 function buildMap() {
@@ -56,11 +60,17 @@ function updateDistance(geoJSONdirections) {
 }
 
 function removeSource() {
-	let lastLayer = pubsMap.getStyle().layers
-	lastLayer = lastLayer[lastLayer.length-1].id
+	let lastRouteLayer = pubsMap.getStyle().layers
+	lastRouteLayer = lastRouteLayer[lastRouteLayer.length-2].id
 
-	pubsMap.removeLayer(lastLayer)
-	pubsMap.removeSource(lastLayer)
+	let lastDotLayer = pubsMap.getStyle().layers
+	lastDotLayer = lastDotLayer[lastDotLayer.length-1].id
+
+	pubsMap.removeLayer(lastRouteLayer)
+	pubsMap.removeSource(lastRouteLayer)
+
+	pubsMap.removeLayer(lastDotLayer)
+	pubsMap.removeSource(lastDotLayer)
 }
 
 //LOADS CORRECT FILE
@@ -68,23 +78,44 @@ function loadRoute(file) {
   //Creates ID name for map
   let fileSplit = file.split('-')[2]
   fileSplit = fileSplit.split('.')[0]
+	let dotID = `${fileSplit}-dots`
 
   //Loads data for route
   return new Promise((resolve, reject) => {
     d3.json(`assets/data/routes/${file}`)
       .then(result => {
-        //Gets the ID of the last layer to remove on change
-
-
-        // if (pubsMap.getLayer('adameve') || pubsMap.getLayer(lastLayer)) {
-        //   pubsMap.removeLayer(lastLayer)
-        // }
 
         //Formats directions into geoJSON
         let geoJSONdirections = directionsToGeoJSON(result)
 
 				updateDistance(geoJSONdirections)
         addRoute(geoJSONdirections, fileSplit)
+				addPubPoints(fileSplit, dotID)
+
+				pubsMap.on('mouseenter', dotID, function(e) {
+					pubsMap.getCanvas().style.cursor = 'pointer'
+
+					let coordinates = e.features[0].geometry.coordinates.slice();
+					let title = e.features[0].properties.title;
+
+					// Ensure that if the map is zoomed out such that multiple
+					// copies of the feature are visible, the popup appears
+					// over the copy being pointed to.
+					while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+						coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+					}
+
+					// Populate the popup and set its coordinates
+					// based on the feature found.
+					popup.setLngLat(coordinates)
+						.setHTML(title)
+						.addTo(pubsMap);
+				})
+
+				pubsMap.on('mouseleave', dotID, function() {
+					pubsMap.getCanvas().style.cursor = '';
+					popup.remove();
+				})
 
         resolve(result)
       })
@@ -93,31 +124,32 @@ function loadRoute(file) {
 }
 
 //TODO FOR ADDING PUB POINTS
-function addPubPoints(coordinates) {
-	pubsMap.addLayer({
-		'id': 'pubs',
-		'type': 'circle',
-		'source': {
-			'type': 'geojson',
-			'data': {
-				'type': 'FeatureCollection',
-				'features': [{
-					'geometry': {
-						'type': 'Point',
-						'coordinates': coordinates[0]
+function addPubPoints(fileSplit, dotID) {
+	return new Promise((resolve, reject) => {
+		d3.json(`assets/data/dots/${fileSplit}.json`)
+			.then(result => {
+
+				pubsMap.addLayer({
+					'id': dotID,
+					'type': 'circle',
+					'source': {
+						'type': 'geojson',
+						'data': {
+							'type': 'FeatureCollection',
+							'features': result
+						}
 					},
-					'properties': {
-						'title': 'Mapbox DC'
+					'paint': {
+						'circle-radius': 4,
+						'circle-color': '#252322',
+						'circle-stroke-width': 2,
+						'circle-stroke-color': '#D4BCAF'
 					}
-				}]
-			}
-		},
-		'paint': {
-			'circle-radius': 6,
-			'circle-color': '#C80E0E',
-			'circle-stroke-width': 1,
-    	'circle-stroke-color': '#000'
-		}
+				})
+
+				resolve(result)
+			})
+			.catch(reject)
 	})
 }
 
@@ -137,7 +169,8 @@ function addRoute(geoJSONdirections, id){
 		},
 		'paint': {
 			'line-color': '#C80E0E',
-			'line-width': 5
+			'line-opacity': 0.8,
+			'line-width': 3
 		}
 	})
 }

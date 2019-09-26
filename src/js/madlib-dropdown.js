@@ -25,7 +25,6 @@ const sentences = [
 
 // helper functions
 function setStartingDropdown(category) {
-	console.log(category)
 	if (category === 'color-noun') {
 		$firstDropdown.node().options[27].selected = true
 	}
