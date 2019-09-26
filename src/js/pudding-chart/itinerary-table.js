@@ -85,6 +85,14 @@ d3.selection.prototype.puddingItineraryTable = function init(pubName) {
 					.text(d => splitAdd(d.address))
 					.attr('class', 'table-pub-count')
 
+				if (individAddData[0].values.length == 10) {
+					d3.select('#map-button').classed('is-hidden', true)
+					d3.select('#map-table .fade').classed('is-hidden', true)
+				} else {
+					d3.select('#map-button').classed('is-hidden', false)
+					d3.select('#map-table .fade').classed('is-hidden', false)
+				}
+
 				Chart.resize();
 				Chart.render();
 			},
