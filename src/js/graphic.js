@@ -55,9 +55,7 @@ function filterByPub(data, category) {
 		let pubName = 'Royal Oak'
 		let strippedName = stripName(pubName)
 		individPubData = data.filter(d => d.pub == pubName)
-		mapbox.loadRoute(`result-coordinates-blueboar.txt`)
-		//TODO delete line above, uncomment line below
-		//mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
+		mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
 	} else if (category === 'noun-inn'){
 		let pubName = 'Crown Inn'
 		let strippedName = stripName(pubName)

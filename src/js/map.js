@@ -123,7 +123,6 @@ function loadRoute(file) {
   })
 }
 
-//TODO FOR ADDING PUB POINTS
 function addPubPoints(fileSplit, dotID) {
 	return new Promise((resolve, reject) => {
 		d3.json(`assets/data/dots/${fileSplit}.json`)
