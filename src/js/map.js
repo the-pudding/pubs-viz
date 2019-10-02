@@ -66,11 +66,14 @@ function removeSource() {
 	let lastDotLayer = pubsMap.getStyle().layers
 	lastDotLayer = lastDotLayer[lastDotLayer.length-1].id
 
-	pubsMap.removeLayer(lastRouteLayer)
-	pubsMap.removeSource(lastRouteLayer)
-
-	pubsMap.removeLayer(lastDotLayer)
-	pubsMap.removeSource(lastDotLayer)
+	if (lastRouteLayer.includes('route')) {
+		pubsMap.removeLayer(lastRouteLayer)
+		pubsMap.removeSource(lastRouteLayer)
+	}
+	if (lastDotLayer.includes('dots')) {
+		pubsMap.removeLayer(lastDotLayer)
+		pubsMap.removeSource(lastDotLayer)
+	}
 }
 
 //LOADS CORRECT FILE
@@ -78,6 +81,7 @@ function loadRoute(file) {
   //Creates ID name for map
   let fileSplit = file.split('-')[2]
   fileSplit = fileSplit.split('.')[0]
+	let routeID = `${fileSplit}-route`
 	let dotID = `${fileSplit}-dots`
 
   //Loads data for route
@@ -89,7 +93,7 @@ function loadRoute(file) {
         let geoJSONdirections = directionsToGeoJSON(result)
 
 				updateDistance(geoJSONdirections)
-        addRoute(geoJSONdirections, fileSplit)
+        addRoute(geoJSONdirections, routeID)
 				addPubPoints(fileSplit, dotID)
 
 				pubsMap.on('mouseenter', dotID, function(e) {
@@ -153,10 +157,10 @@ function addPubPoints(fileSplit, dotID) {
 }
 
 //ADDS ROUTE TO MAP
-function addRoute(geoJSONdirections, id){
+function addRoute(geoJSONdirections, routeID){
 
 	pubsMap.addLayer({
-		'id': id,
+		'id': routeID,
 		'type': 'line',
 		'source': {
 			'type': 'geojson',

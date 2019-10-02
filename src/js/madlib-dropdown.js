@@ -48,7 +48,6 @@ function handleDropdownChange() {
 
 	graphic.setupItineraryTable(pubAddressData, pubName)
 	let strippedName = pubName.replace(/\s/g, '')
-	console.log(strippedName)
 	mapbox.loadRoute(`result-coordinates-${strippedName}.txt`)
 	mapbox.removeSource()
 }
@@ -67,7 +66,9 @@ function buildSentence(data) {
 
 function buildDropDown(data, category) {
 
+
 	let sortedData = data.sort(function(a,b) { return d3.descending(b.pub1, a.pub1) })
+	sortedData = sortedData.filter(d => d.pub != 'Navigation Inn')
 	let pushedData = [];
 	pushedData.push(sortedData.map(function(obj) { return obj.pub; }).sort())
 
