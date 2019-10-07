@@ -3,10 +3,10 @@
 	"description": "We gathered pub names from Pubs Galore, the largest crowdsourced list of pubs in England, Scotland, Wales and Northern Ireland, and plotted the shortest route between pubs of the same name.",
 	"site": "https://pudding.cool",
 	"siteName": "The Pudding",
-	"url": "https://pudding.cool/year/month/name/",
+	"url": "https://pudding.cool/2019/10/pubs/",
 	"keywords": "tk",
-	"imgFacebook": "https://pudding.cool/year/month/name/assets/social/social-facebook.jpg",
-	"imgTwitter": "https://pudding.cool/year/month/name/assets/social/social-twitter.jpg",
+	"imgFacebook": "https://pudding.cool/2019/10/pubs/assets/social/social-facebook.jpg",
+	"imgTwitter": "https://pudding.cool/2019/10/pubs/assets/social/social-twitter.jpg",
 	"author1": {
 		"name": "Caitlyn Ralph",
 		"url": "https://pudding.cool/author/caitlyn-ralph/"
@@ -15,6 +15,6 @@
 		"name": "Jan Diehm",
 		"url": "https://pudding.cool/author/jan-diehm/"
 	},
-	"analytics": "",
+	"analytics": "UA-90567923-1",
 	"lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis neque sit amet sollicitudin vehicula. Maecenas fringilla mi non lacus mattis elementum. Curabitur dignissim faucibus justo."
 }

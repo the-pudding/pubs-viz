@@ -135,7 +135,6 @@ function handleMapSeeMore() {
 	d3.selectAll('.table__directions img').classed('is-animate', false)
 	const currButton = d3.select(this)
 	const currButtonClass = currButton.node().className
-	//console.log(currButtonClass)
 
 	if (currButtonClass == 'open') {
 		currButton.classed('open', false)
