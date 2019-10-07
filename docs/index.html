@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang='en' data-version='1570224162127'>
+<html lang='en' data-version='1570472948280'>
 
 <head>
 
@@ -12,12 +12,12 @@
 	
 	<meta property='og:title' content='Ye Olde Mad-Lib Pub Crawl Generator' />
 	<meta property='og:site_name' content='The Pudding' />
-	<meta property='og:url' content='https://pudding.cool/year/month/name/' />
+	<meta property='og:url' content='https://pudding.cool/2019/10/pubs/' />
 	<meta property='og:description' content='We gathered pub names from Pubs Galore, the largest crowdsourced list of pubs in England, Scotland, Wales and Northern Ireland, and plotted the shortest route between pubs of the same name.' />
 	<meta property='og:type' content='article' />
 	<meta property='og:locale' content='en_US' />
 	
-	<meta property='og:image' content='https://pudding.cool/year/month/name/assets/social/social-facebook.jpg' />
+	<meta property='og:image' content='https://pudding.cool/2019/10/pubs/assets/social/social-facebook.jpg' />
 	<meta property='og:image:type' content='image/jpeg' />
 	<meta property='og:image:width' content='1200' />
 	<meta property='og:image:height' content='600' />
@@ -27,9 +27,9 @@
 	<meta name='twitter:creator' content='' />
 	<meta name='twitter:title' content='Ye Olde Mad-Lib Pub Crawl Generator' />
 	<meta name='twitter:description' content='We gathered pub names from Pubs Galore, the largest crowdsourced list of pubs in England, Scotland, Wales and Northern Ireland, and plotted the shortest route between pubs of the same name.' />
-	<meta name='twitter:image:src' content='https://pudding.cool/year/month/name/assets/social/social-twitter.jpg' />
+	<meta name='twitter:image:src' content='https://pudding.cool/2019/10/pubs/assets/social/social-twitter.jpg' />
 	
-	<link rel='canonical' href='https://pudding.cool/year/month/name/' />
+	<link rel='canonical' href='https://pudding.cool/2019/10/pubs/' />
 	
 	<link rel='apple-touch-icon' sizes='180x180' href='https://pudding.cool/apple-touch-icon.png'>
 	<link rel='icon' type='image/png' sizes='32x32' href='https://pudding.cool/favicon-32x32.png'>
@@ -294,6 +294,15 @@ Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{valu
 },{"promise-polyfill/src/polyfill":"7CRl","whatwg-fetch":"jxGG","./polyfills/startsWith":"H/v5","./polyfills/endsWith":"myV9","./polyfills/findIndex":"9ke9","./polyfills/find":"tX5J","./polyfills/includes":"5qGl"}]},{},["gRIw"], null)</script>
 
 	<script>
+		(function (i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date(); a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+		ga('set', 'anonymizeIp', true);
+		ga('create', 'UA-90567923-1', 'auto');
+		ga('send', 'pageview');
 	
 	</script>
 </head>
@@ -512,7 +521,7 @@ Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{valu
 		<section class='methods'>
 			<h5>Data & Methods</h5>
 				<p class='prose'>Over 41,000 currently open pubs <a href=https://github.com/the-pudding/pubs-data>were collected</a> from <a href=https://www.pubsgalore.co.uk/>Pubs Galore</a>, where members maintain the largest list of pubs in the United Kingdom (England, Scotland, Wales and Northern Ireland). We focused on four common naming patterns and filtered the pubs into “color + noun”, “royalty + noun”, “noun + inn/hotel” and “noun & noun” groups. Then, we counted up pubs with the same name (i.e. there are 352 pubs named “Red Lion” and 258 pubs named “Royal Oak”), giving us over 200 unique names within our patterns. As we were doing the grouping, we removed filler words, such as “the,” “old,” “lower,” “"of hermitage,” "ye olde,” and any mention of “Wetherspoons” (even though we love a good Wetherspoons, let’s be real). We removed names where there were fewer than 10 pubs, because you need at least 10 for a proper pub crawl.</p>
-				<p class='prose'>To calculate the shortest pub crawl between pubs with the same name, we used <a href=https://docs.mapbox.com/api/navigation/#optimization>Mapbox’s Optimization API</a>, which returns a “duration-optimized route between the input coordinates.” The API works to solve the <a href=https://en.wikipedia.org/wiki/Travelling_salesman_problem>Traveling Salesperson Problem</a> (TSP), or the question: “Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?” The Optimization API returned the pub stop coordinates in the order in which we needed to visit them for the shortest route. We then used <a href=https://docs.mapbox.com/help/glossary/directions-api/>Mapbox’s Direction API</a> to plot that route between pubs. Finally, we used <a href=https://docs.mapbox.com/mapbox-gl-js/api/>Mapbox GL JS</a> to display the routes on the above map. The <a href=https://blog.mapbox.com/designing-the-vintage-style-in-mapbox-studio-9da4aa2a627f>vintage style</a> was designed by Amy Lee Walton, a Principal Designer at Mapbox. We omitted pubs with “navigation” in their name from the map because the word “navigation” was interpreted incorrectly.</p>
+				<p class='prose'>To calculate the shortest pub crawl between pubs with the same name, we used <a href=https://docs.mapbox.com/api/navigation/#optimization>Mapbox’s Optimization API</a>, which returns a “duration-optimized route between the input coordinates.” The API works to solve the <a href=https://en.wikipedia.org/wiki/Travelling_salesman_problem>Traveling Salesperson Problem</a> (TSP), or the question: “Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?” The Optimization API returned the pub stop coordinates in the order in which we needed to visit them for the shortest route. We then used <a href=https://docs.mapbox.com/help/glossary/directions-api/>Mapbox’s Direction API</a> to plot that route between pubs. Finally, we used <a href=https://docs.mapbox.com/mapbox-gl-js/api/>Mapbox GL JS</a> to display the routes on the above map. The <a href=https://blog.mapbox.com/designing-the-vintage-style-in-mapbox-studio-9da4aa2a627f>vintage style</a> was designed by Amy Lee Walton, a Principal Designer at Mapbox. Pubs named “Navigation Inn” and “Royal Exchange” were omitted from the map because of routing errors.</p>
 				<p class='prose'>We’d like to give special thanks to Lo Bénichou and Buro Mookerji at Mapbox for helping us along this crazy journey. This project would not have been possible without their help. Mapbox FTW!</p>
 				<p class='prose'>All the drawings used in this piece have been released into the public domain by the <a href=https://www.flickr.com/photos/britishlibrary/albums>British Library on flickr</a>.</p>
 		</section>
@@ -638,7 +647,7 @@ Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{valu
 
 	<script src='https://pudding.cool/assets/scripts/d3.v5.9.1.min.js'></script>
 	<script src='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
-	<script src='main.js?version=1570224162127' async></script>
+	<script src='main.js?version=1570472948280' async></script>
 </body>
 
 </html>
