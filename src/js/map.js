@@ -1,6 +1,8 @@
 let pubsMap;
 let coordinates = [];
 const polyline = require('@mapbox/polyline');
+let mapCenter = null;
+let mapZoom = null;
 
 const $madlibMiles = d3.select('#madlib-miles')
 const $madlibKilometers = d3.select('#madlib-kilometers')
@@ -10,19 +12,31 @@ let popup = new mapboxgl.Popup({
 	closeOnClick: false
 })
 
+function returnCenterZoom() {
+	if (window.innerWidth < 500) {
+		mapCenter = [-2.503, 54.385]
+		mapZoom = 4.5
+	} else {
+		mapCenter = [-4.503, 54.385]
+		mapZoom = 6
+	}
+}
+
 //MAPBOX BUILDS INITIAL MAP
 function buildMap() {
 	// Initializes mapbox mapbox
 	mapboxgl.accessToken =
 		'pk.eyJ1IjoiZG9jazQyNDIiLCJhIjoiY2pjazE5eTM2NDl2aDJ3cDUyeDlsb292NiJ9.Jr__XbmAolbLyzPDj7-8kQ';
 
+	returnCenterZoom()
+
 	pubsMap = new mapboxgl.Map({
 		container: 'pubsMap', // container id
 		style: 'mapbox://styles/dock4242/cjz1lxn1i17571cpdemlrh3e5', // style URL
-		center: [-4.503, 54.385],
+		center: mapCenter,
 		// maxZoom: 18,
 		// maxBounds: [[-122.963019,47.303616], [-121.782112, 47.983433]],
-		zoom: 6,
+		zoom: mapZoom,
 		interactive: true
 	});
 
@@ -180,7 +194,9 @@ function addRoute(geoJSONdirections, routeID){
 
 function init() {
   buildMap()
-  loadRoute('result-coordinates-redlion.txt')
+	pubsMap.on('load', function() {
+		loadRoute('result-coordinates-redlion.txt')
+	})
 }
 
 export default { init, loadRoute, removeSource };
