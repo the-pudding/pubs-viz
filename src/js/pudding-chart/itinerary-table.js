@@ -78,7 +78,7 @@ d3.selection.prototype.puddingItineraryTable = function init(pubName) {
 				const pubName = nameDiv
 					.append('p')
 					.attr('class', 'table-pub-name')
-					.text(d => splitName(d.pubName))
+					.text(d => d.pubName)
 
 				const pubAdd = tableDiv
 					.append('p')
