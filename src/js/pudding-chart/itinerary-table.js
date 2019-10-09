@@ -40,7 +40,9 @@ d3.selection.prototype.puddingItineraryTable = function init(pubName) {
 		}
 
 		function filterData() {
-			individAddData = data.filter(d => d.key == nameSpan)
+			individAddData = data.filter(function(d) {
+				return d.key == nameSpan
+			})
 		}
 
 		const Chart = {
@@ -55,7 +57,9 @@ d3.selection.prototype.puddingItineraryTable = function init(pubName) {
 
 				const tableRow = $vis
 					.selectAll('.pub')
-					.data(individAddData[0].values)
+					.data(function(d) {
+						return individAddData[0].values
+					})
 					.enter()
 					.append('a')
 					.attr('xlink:href', d => `https://www.pubsgalore.co.uk/pubs/${d.pubID}/`)
