@@ -1,6 +1,7 @@
 pub,count,tag
 red lion,402,color
 royal oak,331,royalty
+crown inn,224,royalty
 crown inn,224,inn
 new inn,209,inn
 white hart,208,color
@@ -16,6 +17,7 @@ black horse,132,color
 bell inn,128,inn
 swan inn,114,inn
 fox & hounds,110,noun
+george & dragon,109,noun
 george & dragon,109,royalty
 white lion,108,color
 star inn,107,inn
@@ -24,23 +26,30 @@ sun inn,95,inn
 hare & hounds,95,noun
 railway inn,91,inn
 white swan,87,color
+george inn,83,royalty
 george inn,83,inn
+white horse inn,82,color
 white horse inn,82,inn
 golden lion,78,color
 slug & lettuce,76,noun
 anchor inn,75,inn
 castle inn,73,inn
+red lion inn,73,inn
 red lion inn,73,color
 black bull,70,color
 bridge inn,68,inn
 wheatsheaf inn,65,inn
+george hotel,64,royalty
 george hotel,64,inn
+crown hotel,64,royalty
 crown hotel,64,inn
+white hart inn,63,inn
 white hart inn,63,color
 station hotel,62,inn
 waggon & horses,61,noun
 village inn,61,inn
 green man,60,color
+royal hotel,58,royalty
 royal hotel,58,inn
 chequers inn,57,inn
 fox inn,57,inn
@@ -50,8 +59,10 @@ duke of york,54,royalty
 queens arms,53,royalty
 horse & jockey,52,noun
 greyhound inn,51,inn
+victoria inn,51,royalty
 victoria inn,51,inn
 black swan,51,color
+royal oak inn,50,royalty
 royal oak inn,50,inn
 lamb inn,50,inn
 duke of wellington,50,royalty
@@ -60,28 +71,39 @@ bull inn,48,inn
 green dragon,47,color
 horse & groom,46,noun
 blue bell,44,color
+black horse inn,44,inn
 black horse inn,44,color
+red lion hotel,43,inn
 red lion hotel,43,color
+queens hotel,42,royalty
 queens hotel,42,inn
 britannia inn,41,inn
+blue bell inn,41,inn
 blue bell inn,41,color
 king william iv,39,royalty
 swan hotel,38,inn
+cross keys inn,37,royalty
 cross keys inn,37,inn
 railway hotel,37,inn
 black lion,37,color
 commercial inn,35,inn
 miller & carter,34,noun
+victoria hotel,34,royalty
 victoria hotel,34,inn
+castle hotel,34,royalty
 castle hotel,34,inn
+kings arms hotel,33,royalty
 kings arms hotel,33,inn
+white hart hotel,32,inn
 white hart hotel,32,color
 dog & partridge,32,noun
+black bull inn,32,inn
 black bull inn,32,color
 vine inn,32,inn
 gate inn,31,inn
 inn,31,inn
 prince albert,31,royalty
+crown & anchor,31,noun
 crown & anchor,31,royalty
 hope & anchor,30,noun
 commercial hotel,30,inn
@@ -91,7 +113,9 @@ griffin inn,29,inn
 horseshoe inn,27,inn
 royal george,27,royalty
 white bear,26,color
+kings head hotel,25,royalty
 kings head hotel,25,inn
+royal oak hotel,25,royalty
 royal oak hotel,25,inn
 plough & harrow,25,noun
 pheasant inn,25,inn
@@ -105,6 +129,7 @@ brewhouse & kitchen,22,noun
 cross inn,22,inn
 boot inn,22,inn
 roebuck inn,22,inn
+cross keys hotel,22,royalty
 cross keys hotel,22,inn
 white house,22,color
 stag inn,22,inn
@@ -113,8 +138,10 @@ rose inn,21,inn
 dolphin inn,21,inn
 dukes head,21,royalty
 blue boar,21,color
+kings head inn,21,royalty
 kings head inn,21,inn
 rising sun inn,21,inn
+white lion inn,21,inn
 white lion inn,21,color
 unicorn inn,21,inn
 bear inn,20,inn
@@ -137,6 +164,7 @@ woodman inn,18,inn
 queen victoria,18,royalty
 park inn,18,inn
 victoria bar,18,royalty
+black lion hotel,17,inn
 black lion hotel,17,color
 wheel inn,17,inn
 red cow,17,color
@@ -145,6 +173,7 @@ lion inn,17,inn
 buck inn,17,inn
 lion hotel,17,inn
 yew tree inn,16,inn
+black bull hotel,16,inn
 black bull hotel,16,color
 cottage inn,16,inn
 windsor castle,16,royalty
@@ -157,11 +186,15 @@ wheatsheaf hotel,15,inn
 county hotel,15,inn
 inn on green,15,inn
 ferry inn,15,inn
+white lion hotel,15,inn
 white lion hotel,15,color
 welcome inn,15,inn
+golden lion hotel,15,inn
 golden lion hotel,15,color
+coach & horses inn,15,noun
 coach & horses inn,15,inn
 red house,14,color
+white swan inn,14,inn
 white swan inn,14,color
 bull hotel,14,inn
 grey horse,14,color
@@ -171,18 +204,22 @@ salutation inn,13,inn
 golden ball,13,color
 oak inn,13,inn
 brass monkey,13,color
+golden lion inn,13,inn
 golden lion inn,13,color
 sportsman inn,13,inn
 royal exchange,13,royalty
+queens head hotel,13,royalty
 queens head hotel,13,inn
 black dog,13,color
 smugglers inn,13,inn
 harrow inn,13,inn
+crown & sceptre,12,noun
 crown & sceptre,12,royalty
 talbot hotel,12,inn
 robin hood inn,12,inn
 grapes inn,12,inn
 dolphin hotel,12,inn
+crown & cushion,12,noun
 crown & cushion,12,royalty
 rock inn,12,inn
 nelson inn,11,inn
