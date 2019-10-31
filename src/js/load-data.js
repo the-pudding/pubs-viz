@@ -50,6 +50,6 @@ function loadB(file) {
 }
 
 export default function loadData() {
-  const loads = [loadA('pub-counts.csv'), loadB('pub-addresses-v2.csv')];
+  const loads = [loadA('pub-counts.csv'), loadB('pub-addresses-v3.csv')];
   return Promise.all(loads);
 }
