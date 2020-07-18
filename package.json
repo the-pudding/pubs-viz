@@ -10,7 +10,7 @@
 	"dependencies": {
 		"@mapbox/polyline": "^1.1.0",
 		"cli-error-notifier": "2.1.0",
-		"lodash": "^4.17.15",
+		"lodash": "^4.17.19",
 		"lodash.debounce": "4.0.8",
 		"nouislider": "14.0.2",
 		"rimraf": "2.6.3",
