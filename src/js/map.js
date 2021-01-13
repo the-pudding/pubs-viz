@@ -26,7 +26,7 @@ function returnCenterZoom() {
 function buildMap() {
 	// Initializes mapbox mapbox
 	mapboxgl.accessToken =
-		'pk.eyJ1IjoiZG9jazQyNDIiLCJhIjoiY2pjazE5eTM2NDl2aDJ3cDUyeDlsb292NiJ9.Jr__XbmAolbLyzPDj7-8kQ';
+		'pk.eyJ1IjoiZG9jazQyNDIiLCJhIjoiY2tqdm5tN3JsOGdyajMwbnBydTNkNzUydSJ9.JecWFjwwbTO-MNwHVhnLjA';
 
 	returnCenterZoom()
 
